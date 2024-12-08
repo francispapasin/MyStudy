@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyStudy.MainPage"
+             Title="My Study"
+             BackgroundColor="#F0F4F8">
+
+    <!-- Wrap the entire content in a ScrollView -->
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <!-- Welcome Title -->
+            <Label Text="Welcome, Student!" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="#1E293B" />
+
+            <!-- Button to add new schedule -->
+            <Button Text="Add Schedule" 
+                    BackgroundColor="#3B82F6" 
+                    TextColor="White" 
+                    CornerRadius="12"
+                    FontAttributes="Bold"
+                    HeightRequest="50" 
+                    Clicked="OnAddScheduleClicked" />
+
+            <!-- List of all schedules -->
+            <CollectionView ItemsSource="{Binding Schedules}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="20" 
+                               Margin="10" 
+                               BorderColor="#E2E8F0" 
+                               BackgroundColor="White" 
+                               CornerRadius="15"
+                               HasShadow="True">
+                            <StackLayout Spacing="10">
+                                <Grid ColumnDefinitions="*, Auto" Padding="0">
+                                    <!-- Schedule Details -->
+                                    <StackLayout>
+                                        <!-- Task Name -->
+                                        <Label Text="Course" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding TaskName}" 
+                                               FontSize="12" 
+                                               TextColor="#475569" />
+
+                                        <!-- Task Description -->
+                                        <Label Text="Description" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding TaskDescription}" 
+                                               FontSize="12" 
+                                               TextColor="#64748B" />
+
+                                        <!-- Day of Week -->
+                                        <Label Text="Day" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding DayOfWeek}" 
+                                               FontSize="12" 
+                                               TextColor="#475569" />
+
+                                        <!-- Start and End Time -->
+                                        <Label Text="Start Time" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding StartTime, StringFormat='{0:hh\\:mm tt}'}" 
+                                               FontSize="12" 
+                                               TextColor="#475569" />
+
+                                        <Label Text="End Time" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm tt}'}" 
+                                               FontSize="12" 
+                                               TextColor="#475569" />
+
+                                        <!-- Priority -->
+                                        <Label Text="Type" 
+                                               FontAttributes="None" 
+                                               FontSize="Default" 
+                                               TextColor="#1E293B" />
+                                        <Label Text="{Binding Priority}" 
+                                               FontSize="12" 
+                                               TextColor="#EF4444" />
+                                    </StackLayout>
+
+                                    <!-- Edit and Delete Buttons -->
+                                    <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                        <Button Text="Edit" 
+                                                BackgroundColor="#F59E0B" 
+                                                TextColor="White" 
+                                                CornerRadius="8" 
+                                                CommandParameter="{Binding Id}" 
+                                                Clicked="OnEditSchedule" 
+                                                WidthRequest="100" />
+                                        <Button Text="Delete" 
+                                                BackgroundColor="#DC2626" 
+                                                TextColor="White" 
+                                                CornerRadius="8" 
+                                                CommandParameter="{Binding Id}" 
+                                                Clicked="OnDeleteSchedule" 
+                                                WidthRequest="100" />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
